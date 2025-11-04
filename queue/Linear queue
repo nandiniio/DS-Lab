@@ -1,0 +1,80 @@
+#include<stdio.h>
+
+#define N 5
+int queue[N];
+int front = -1;
+int rear = -1;
+
+void enque(int x){
+    if(rear == N-1){
+        printf("Queue is full!\n");
+    }
+    else if(rear == -1 && front == -1){
+        front = rear = 0;
+        queue[rear] = x;
+        printf("Element added!\n");
+    }
+    else{
+        rear++;
+        queue[rear] = x;
+        printf("Element added!\n");
+    }
+}
+
+void deque(){
+    if(front == -1 && rear == -1){
+        printf("Queue is empty.\n");
+    }
+    else if(front==rear){
+        front = rear = -1;
+    }
+    else{
+        printf("Deleted element : %d\n", queue[front]);
+        front++;
+    }
+}
+void display(){
+    if(front==-1 && rear == -1){
+        printf("Queue is empty.\n");
+    }
+    else{
+        for(int i=front;i<rear+1;i++){
+            printf("%d \n", queue[i]);
+        }
+    }
+}
+
+void peek(){
+    if(front == -1 && rear == -1){
+        printf("Queue is empty! \n");
+    }
+    else{
+        printf("%d \n",queue[front]);
+    }
+}
+
+void main(){
+    char ch = ' ';
+    int x;
+    printf(" Choices are : a - enqueue\n b - dequeue\n c - peek\n d - display\n e - exit.\n");
+
+    while(ch != 'e'){
+    printf("Enter choice (a/b/c/d/e) : ");
+    scanf(" %c", &ch);
+
+    switch(ch){
+        case 'a' : printf(" Enter value to be added : ");
+        scanf("%d", &x);
+        enque(x);
+        break;
+        case 'b' : deque();
+        break;
+        case 'c' : peek();
+        break;
+        case 'd' : display();
+        break;
+        case 'e' : printf("Exiting... bye!");
+        break;
+        }
+    }
+}
